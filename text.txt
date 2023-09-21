@@ -1,0 +1,1 @@
+ALTER TABLE `users` ADD FOREIGN KEY (role_id) REFERENCES roles (role_id);
