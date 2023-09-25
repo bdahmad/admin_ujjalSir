@@ -40,6 +40,7 @@ require_once('functions/function.php');
                                                         $_SESSION['id'] = $data['user_id'];
                                                         $_SESSION['name'] = $data['user_name'];
                                                         $_SESSION['role'] = $data['role_id'];
+                                                        $_SESSION['img'] = $data['user_photo'];
                                                         header('Location: index.php');
                                                     }
                                                     else{
