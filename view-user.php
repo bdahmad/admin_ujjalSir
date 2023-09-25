@@ -1,5 +1,6 @@
 <?php
 require_once("functions/function.php");
+needLogged();
 get_header();
 get_sidebar();
 

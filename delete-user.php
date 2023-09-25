@@ -1,6 +1,6 @@
 <?php
    require_once("functions/function.php");
-
+   needLogged();
    $id = $_GET['d'];
 
    $delete = "DELETE FROM `users` WHERE user_id = '$id'";

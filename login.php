@@ -1,3 +1,6 @@
+<?php
+require_once('functions/function.php');
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -20,12 +23,44 @@
                         <div class="row">
                             <div class="col-md-7 pe-0">
                                 <div class="form-left h-100 py-5 px-5">
-                                    <form action="" class="row g-4">
+                                    <?php
+                                        if(!empty($_POST)){
+                                            $username = $_POST['username'];
+                                            $password = md5($_POST['password']);
+
+                                            $select = "SELECT * FROM `users` WHERE  user_username = '$username' AND user_password = '$password'";
+                                            $query = mysqli_query($con,$select);
+                                            $data = mysqli_fetch_assoc($query);
+
+                                            // print_r($data);
+
+                                            if(!empty($username)){
+                                                if(!empty($password)){
+                                                    if($data){
+                                                        $_SESSION['id'] = $data['user_id'];
+                                                        $_SESSION['name'] = $data['user_name'];
+                                                        $_SESSION['role'] = $data['role_id'];
+                                                        header('Location: index.php');
+                                                    }
+                                                    else{
+                                                        echo "username & password didn't match.";
+                                                    }
+                                                }else{
+                                                    echo "please enter your password.";
+                                                }
+                                            }else{
+                                                echo "please enter your username.";
+                                            }
+                                            
+                                        }
+
+                                    ?>
+                                    <form action="" method="post" class="row g-4">
                                         <div class="col-12">
                                             <label>Username<span class="text-danger">*</span></label>
                                             <div class="input-group">
                                                 <div class="input-group-text"><i class="fas fa-user"></i></div>
-                                                <input type="text" class="form-control" placeholder="Enter Username">
+                                                <input type="text" name="username" class="form-control" placeholder="Enter Username">
                                             </div>
                                         </div>
 
@@ -33,7 +68,7 @@
                                             <label>Password<span class="text-danger">*</span></label>
                                             <div class="input-group">
                                                 <div class="input-group-text"><i class="fas fa-lock"></i></div>
-                                                <input type="text" class="form-control" placeholder="Enter Password">
+                                                <input type="password" name="password" class="form-control" placeholder="Enter Password">
                                             </div>
                                         </div>
 
