@@ -1,6 +1,7 @@
 <?php
 require_once("functions/function.php");
 needLogged();
+if($_SESSION['role']==1){
 get_header();
 get_sidebar();
 
@@ -130,4 +131,7 @@ if (!empty($_POST)) {
 
 <?php
 get_footer();
+}else{
+  header('Location: index.php');
+}
 ?>
