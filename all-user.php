@@ -71,6 +71,7 @@ get_sidebar();
                   <ul class="dropdown-menu">
                     <li><a class="dropdown-item" href="view-user.php?v=<?= $data['user_id'];?>">View</a></li>
                     <li><a class="dropdown-item" href="edit-user.php?e=<?= $data['user_id'];?>">Edit</a></li>
+                    <li><a class="dropdown-item" href="change-password.php?p=<?= $data['user_id'];?>">Change Password</a></li>
                     <li><a class="dropdown-item" href="delete-user.php?d=<?= $data['user_id'];?>">Delete</a></li>
                   </ul>
                 </div>
