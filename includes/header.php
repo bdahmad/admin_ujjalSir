@@ -33,8 +33,8 @@
               <?= $_SESSION['name']; ?>
             </button>
             <ul class="dropdown-menu">
-              <li><a class="dropdown-item" href="#"><i class="fas fa-user-tie"></i> My Profile</a></li>
-              <li><a class="dropdown-item" href="#"><i class="fas fa-cog"></i> Manage Account</a></li>
+              <li><a class="dropdown-item" href="profile-user.php"><i class="fas fa-user-tie"></i> My Profile</a></li>
+              <li><a class="dropdown-item" href="manage-account.php"><i class="fas fa-cog"></i> Manage Account</a></li>
               <li><a class="dropdown-item" href="logout.php"><i class="fas fa-sign-out-alt"></i> Logout</a></li>
             </ul>
           </div>
