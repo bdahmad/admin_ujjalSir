@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 21, 2023 at 11:52 AM
+-- Generation Time: Oct 01, 2023 at 09:40 AM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -65,11 +65,13 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`user_id`, `user_name`, `user_phone`, `user_email`, `user_username`, `user_password`, `role_id`, `user_photo`) VALUES
-(10, 'Ahmad Ali', '01935056526', 'ahmad@gmail.com', 'ahmad', '6512bd43d9caa6e02c990b0a82652dca', 1, 'users_1695277455_43200980.jpg'),
-(12, 'Sabbir Ahmed', '019354842325', 'sabbir@gmail.com', 'sabbir', '6512bd43d9caa6e02c990b0a82652dca', 2, 'users_1695288403_90386715.jpg'),
-(13, 'Reja Kazi', '01632547894', 'reja@gmail.com', 'reja', 'eccbc87e4b5ce2fe28308fd9f2a7baf3', 3, 'users_1695289883_3172468.png'),
-(14, 'Tanbir Ahmed', '01521364789', 'tanbir@gmail.com', 'tanbir', 'c4ca4238a0b923820dcc509a6f75849b', 4, 'users_1695288516_84913916.jpg'),
-(15, 'Toasin al Mahmud', '01515369874', 'toasinad@gmail.com', 'toasin', 'c4ca4238a0b923820dcc509a6f75849b', 5, 'users_1695288590_93017031.jpg');
+(12, 'Sabbir Ahmed', '019354842325', 'sabbir@gmail.com', 'sabbir', 'c20ad4d76fe97759aa27a0c99bff6710', 2, 'users_1695288403_90386715.jpg'),
+(13, 'Reja Kazi', '01632547894', 'reja@gmail.com', 'reja', 'c20ad4d76fe97759aa27a0c99bff6710', 3, 'users_1695289883_3172468.png'),
+(14, 'Tanbir Ahmed', '01521364789', 'tanbir@gmail.com', 'tanbir', 'c20ad4d76fe97759aa27a0c99bff6710', 4, 'users_1695288516_84913916.jpg'),
+(15, 'Toasin al Mahmud', '01515369874', 'toasinad@gmail.com', 'toasin', 'c20ad4d76fe97759aa27a0c99bff6710', 5, 'users_1695288590_93017031.jpg'),
+(16, 'Ahmad Ali', '01935056526', 'ahmad@gmail.com', 'ahmad', '6512bd43d9caa6e02c990b0a82652dca', 1, 'users_1695634020_71141933.png'),
+(17, 'aliq', '345313213', 'ali@gmail.com', 'ali', 'c20ad4d76fe97759aa27a0c99bff6710', 3, ''),
+(18, 'test', '526465', 'test@gmail.com', 'test', 'c20ad4d76fe97759aa27a0c99bff6710', 5, 'users_1695634696_74265517.jpg');
 
 --
 -- Indexes for dumped tables
@@ -102,7 +104,7 @@ ALTER TABLE `roles`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 
 --
 -- Constraints for dumped tables
