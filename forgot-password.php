@@ -24,7 +24,26 @@ require_once('functions/function.php');
                           
                             <div class="col-md-7 pe-0">
                                 <div class="form-left h-100 py-5 px-5">
-                                    
+                                    <?php
+                                        
+                                        if($_POST){
+                                            $email = $_POST['email'];
+                                            $select = "SELECT * FROM `users` WHERE user_email = '$email'";
+                                            $query = mysqli_query($con, $select);
+                                            $data = mysqli_fetch_assoc($query);
+                                            if(!empty($email)){
+                                                if($data){
+                                                    header('Location: reset-password.php?rp='.$data['user_slug']);
+                                                }
+                                                else{
+                                                    echo "email didn't match";
+                                                }
+                                            }
+                                            else{
+                                                echo "please enter email.";
+                                            }
+                                        }
+                                    ?>
                                     <form action="" method="post" class="row g-4">
                                         <div class="col-12">
                                             <label>Email<span class="text-danger">*</span></label>

@@ -14,41 +14,49 @@ if (!empty($_POST)) {
   $password = md5($_POST['password']);
   $confirmPassword = md5($_POST['confirmPassword']);
   $photo = ($_FILES['photo']);
+  $slug = uniqid('U');
   $photoName = '';
-  if($photo['name']!=''){
-    $photoName = 'users_'.time().'_'.rand(100000,100000000).'.'.pathinfo($photo['name'],PATHINFO_EXTENSION);
+  if ($photo['name'] != '') {
+    $photoName = 'users_' . time() . '_' . rand(100000, 100000000) . '.' . pathinfo($photo['name'], PATHINFO_EXTENSION);
   }
-  
+
+  $select = "SELECT * FROM `users`";
+  $query = mysqli_query($con, $select);
+  $data = mysqli_fetch_assoc($query);
 
 
-  $insert = "INSERT INTO `users`( `user_name`, `user_phone`, `user_email`, `user_username`, `user_password`,`role_id`,`user_photo`) 
-  VALUES ('$name','$phone','$email','$username','$password','$role','$photoName')";
+  $insert = "INSERT INTO `users`( `user_name`, `user_phone`, `user_email`, `user_username`, `user_password`,`role_id`,`user_photo`,`user_slug`) 
+  VALUES ('$name','$phone','$email','$username','$password','$role','$photoName','$slug')";
 
 
   if (!empty($name)) {
     if (!empty($email)) {
       if (!empty($username)) {
-        if (!empty($password)) {
-          if (!empty($confirmPassword)) {
-            if ($password === $confirmPassword) {
-              if(!empty($role)){
-                if (mysqli_query($con, $insert)) {
-                  move_uploaded_file($photo['tmp_name'],'uploads/'.$photoName);
-                  echo "registration successful";
+        if ($data['user_email'] === $email) {
+          if (!empty($password)) {
+            if (!empty($confirmPassword)) {
+              if ($password === $confirmPassword) {
+                if (!empty($role)) {
+                  if (mysqli_query($con, $insert)) {
+                    move_uploaded_file($photo['tmp_name'], 'uploads/' . $photoName);
+                    echo "registration successful";
+                  } else {
+                    echo "registration failed";
+                  }
                 } else {
-                  echo "registration failed";
+                  echo "please select your role.";
                 }
-              }else{
-                echo "please select your role.";
+              } else {
+                echo "password not match";
               }
             } else {
-              echo "password not match";
+              echo "enter your confirm password";
             }
           } else {
-            echo "enter your confirm password";
+            echo "enter your password";
           }
         } else {
-          echo "enter your password";
+          echo "email already exists.";
         }
       } else {
         echo "enter your username";
@@ -119,15 +127,15 @@ if (!empty($_POST)) {
             <div class="col-sm-4">
               <select class="form-control form_control" id="" name="role">
                 <option>Select Role</option>
-                <?php 
-                  $selectRole = "SELECT * FROM `roles` ORDER BY role_id ASC";
-                  $queryRole = mysqli_query($con,$selectRole);
-                  
-                  while($roleData = mysqli_fetch_assoc($queryRole)){
-                    ?>
-                      <option value="<?= $roleData['role_id'];?>"><?= $roleData['role_name'];?></option>
-                    <?php
-                  }
+                <?php
+                $selectRole = "SELECT * FROM `roles` ORDER BY role_id ASC";
+                $queryRole = mysqli_query($con, $selectRole);
+
+                while ($roleData = mysqli_fetch_assoc($queryRole)) {
+                ?>
+                  <option value="<?= $roleData['role_id']; ?>"><?= $roleData['role_name']; ?></option>
+                <?php
+                }
                 ?>
               </select>
             </div>

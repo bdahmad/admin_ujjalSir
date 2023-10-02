@@ -24,37 +24,34 @@ require_once('functions/function.php');
                             <div class="col-md-7 pe-0">
                                 <div class="form-left h-100 py-5 px-5">
                                     <?php
-                                        if(!empty($_POST)){
-                                            $username = $_POST['username'];
+                                    if ($_POST) {
+                                        $password = '';
+                                        $username = $_POST['username'];
+                                        if(!empty($_POST['password']))
+                                        {
                                             $password = md5($_POST['password']);
-
-                                            $select = "SELECT * FROM `users` WHERE  user_username = '$username' AND user_password = '$password'";
-                                            $query = mysqli_query($con,$select);
-                                            $data = mysqli_fetch_assoc($query);
-
-                                            // print_r($data);
-   
-                                            if(!empty($username)){
-                                                if(!empty($password)){
-                                                    if($data){
-                                                        $_SESSION['id'] = $data['user_id'];
-                                                        $_SESSION['name'] = $data['user_name'];
-                                                        $_SESSION['role'] = $data['role_id'];
-                                                        $_SESSION['img'] = $data['user_photo'];
-                                                        header('Location: index.php');
-                                                    }
-                                                    else{
-                                                        echo "username & password didn't match.";
-                                                    }
-                                                }else{
-                                                    echo "please enter your password.";
-                                                }
-                                            }else{
-                                                echo "please enter your username.";
-                                            }
-                                            
                                         }
+                                        
+                                        $select = "SELECT * FROM `users` WHERE  user_username = '$username' AND user_password = '$password'";
+                                        $query = mysqli_query($con, $select);
+                                        $data = mysqli_fetch_assoc($query);
 
+                                        // print_r($data);
+                                        if (!empty($username) && !empty($password)) {
+                                            if ($data) {
+                                                $_SESSION['id'] = $data['user_id'];
+                                                $_SESSION['name'] = $data['user_name'];
+                                                $_SESSION['role'] = $data['role_id'];
+                                                $_SESSION['img'] = $data['user_photo'];
+                                                header('Location: index.php');
+                                            }
+                                        } else if (empty($username)) {
+                                            echo "Please enter the username";
+                                        } 
+                                        else if (empty($password)) {
+                                            echo "Please enter the password";
+                                        }
+                                    }
                                     ?>
                                     <form action="" method="post" class="row g-4">
                                         <div class="col-12">
