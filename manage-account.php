@@ -62,7 +62,7 @@ $data = mysqli_fetch_assoc($query);
             </div>
             <div class="card-body">
                <div class="row mb-3">
-                  <label class="col-sm-3 col-form-label col_form_label">Name<span class="req_star">*</span>:</label>
+                  <label class="col-sm-3 col-form-label col_form_label">Name :</label>
                   <div class="col-sm-7">
                      <div class="row">
                         <div class="col-sm-8">
@@ -71,78 +71,182 @@ $data = mysqli_fetch_assoc($query);
                         <div class="col-sm-4">
                            <button type="submit" class="btn btn-sm btn-dark" name="nameUpdate">UPDATE</button>
                            <?php
-                              if(isset($_POST['nameUpdate'])){
-                                 $name = $_POST['name'];
-                                 $uName = "UPDATE `users` SET `user_name`='$name' WHERE user_id = '$id'";
-                                 if(mysqli_query($con,$uName)){
-                                    // header('Location: manage-account.php');
-                                    echo "update successfully.";
-                                    $_SESSION['name'] = $data['user_name'];
-
-                                 }
-                                 else{
-                                    echo "Opps! update failed.";
-                                 }
+                           if (isset($_POST['nameUpdate'])) {
+                              $name = $_POST['name'];
+                              $uName = "UPDATE `users` SET `user_name`='$name' WHERE user_id = '$id'";
+                              if (mysqli_query($con, $uName)) {
+                                 // header('Location: manage-account.php');
+                                 echo "update successfully.";
+                                 $_SESSION['name'] = $data['user_name'];
+                              } else {
+                                 echo "Opps! update failed.";
                               }
+                           }
                            ?>
                         </div>
-
-
                      </div>
                   </div>
                </div>
                <div class="row mb-3">
-                  <label class="col-sm-3 col-form-label col_form_label">Phone:</label>
+                  <label class="col-sm-3 col-form-label col_form_label">Phone :</label>
                   <div class="col-sm-7">
-                     <input type="text" class="form-control form_control" id="" name="phone" value="<?= $data['user_phone']; ?>">
+                     <div class="row">
+                        <div class="col-sm-8">
+                           <input type="text" class="form-control form_control" id="" value="<?= $data['user_phone']; ?>" name="phone">
+                        </div>
+                        <div class="col-sm-4">
+                           <button type="submit" class="btn btn-sm btn-dark" name="phoneUpdate">UPDATE</button>
+                           <?php
+                           if (isset($_POST['phoneUpdate'])) {
+                              $phone = $_POST['phone'];
+                              $uPhone = "UPDATE `users` SET `user_phone`='$phone' WHERE user_id = '$id'";
+                              if (mysqli_query($con, $uPhone)) {
+                                 // header('Location: manage-account.php');
+                                 echo "update successfully.";
+                                 $_SESSION['phone'] = $data['user_phone'];
+                              } else {
+                                 echo "Opps! update failed.";
+                              }
+                           }
+                           ?>
+                        </div>
+                     </div>
                   </div>
                </div>
                <div class="row mb-3">
-                  <label class="col-sm-3 col-form-label col_form_label">Email<span class="req_star">*</span>:</label>
+                  <label class="col-sm-3 col-form-label col_form_label">Email :</label>
                   <div class="col-sm-7">
-                     <input type="email" class="form-control form_control" value="<?= $data['user_email']; ?>" id="" name="email">
+                     <div class="row">
+                        <div class="col-sm-8">
+                           <input type="text" class="form-control form_control" id="" value="<?= $data['user_email']; ?>" name="email">
+                        </div>
+                        <div class="col-sm-4">
+                           <button type="submit" class="btn btn-sm btn-dark" name="nameUpdate">UPDATE</button>
+                           <?php
+                           if (isset($_POST['nameUpdate'])) {
+                              $name = $_POST['name'];
+                              $uName = "UPDATE `users` SET `user_name`='$name' WHERE user_id = '$id'";
+                              if (mysqli_query($con, $uName)) {
+                                 // header('Location: manage-account.php');
+                                 echo "update successfully.";
+                                 $_SESSION['name'] = $data['user_name'];
+                              } else {
+                                 echo "Opps! update failed.";
+                              }
+                           }
+                           ?>
+                        </div>
+                     </div>
                   </div>
                </div>
+               
                <div class="row mb-3">
-                  <label class="col-sm-3 col-form-label col_form_label">Username<span class="req_star">*</span>:</label>
+                  <label class="col-sm-3 col-form-label col_form_label">Username :</label>
                   <div class="col-sm-7">
-                     <input type="text" class="form-control form_control" value="<?= $data['user_username']; ?>" id="" name="" disabled>
-                  </div>
-               </div>
-               <div class="row mb-3">
-                  <label class="col-sm-3 col-form-label col_form_label">User Role<span class="req_star">*</span>:</label>
-                  <div class="col-sm-4">
-                     <select class="form-control form_control" id="" name="role" disabled>
-                        <option>Select Role</option>
-                        <?php
-                        $selectRole = "SELECT * FROM `roles` ORDER BY role_id ASC";
-                        $queryRole = mysqli_query($con, $selectRole);
+                     <div class="row">
+                        <div class="col-sm-8">
+                           <input type="text" class="form-control form_control" value="<?= $data['user_username']; ?>" id="" name="">
 
-                        while ($roleData = mysqli_fetch_assoc($queryRole)) {
-                        ?>
-                           <option value="<?= $roleData['role_id']; ?>" <?php if ($roleData['role_id'] == $data['role_id']) {
-                                                                           echo 'selected';
-                                                                        } ?>><?= $roleData['role_name']; ?></option>
-                        <?php
-                        }
-                        ?>
-                     </select>
+                        </div>
+                        <div class="col-sm-4">
+                           <button type="submit" class="btn btn-sm btn-dark" name="nameUpdate">UPDATE</button>
+                        </div>
+                     </div>
+
                   </div>
                </div>
                <div class="row mb-3">
-                  <label class="col-sm-3 col-form-label col_form_label">Photo:</label>
-                  <div class="col-sm-4">
-                     <input type="file" class="form-control form_control" id="" name="photo">
+                  <label class="col-sm-3 col-form-label col_form_label">User Role :</label>
+                  <div class="col-sm-7">
+                     <div class="row">
+                        <div class="col-sm-8">
+                           <select class="form-control form_control" id="" name="role" disabled>
+                              <option>Select Role</option>
+                              <?php
+                              $selectRole = "SELECT * FROM `roles` ORDER BY role_id ASC";
+                              $queryRole = mysqli_query($con, $selectRole);
+
+                              while ($roleData = mysqli_fetch_assoc($queryRole)) {
+                              ?>
+                                 <option value="<?= $roleData['role_id']; ?>" <?php if ($roleData['role_id'] == $data['role_id']) {
+                                                                                 echo 'selected';
+                                                                              } ?>><?= $roleData['role_name']; ?></option>
+                              <?php
+                              }
+                              ?>
+                           </select>
+                        </div>
+                        <div class="col-sm-4"></div>
+                     </div>
+
                   </div>
+               </div>
+               <div class="row mb-3">
+                  <label class="col-sm-3 col-form-label col_form_label">Photo :</label>
+                  <div class="col-sm-7">
+                     <div class="row">
+                        <div class="col-sm-8">
+                           <input type="file" class="form-control form_control" id="" name="photo">
+                        </div>
+                        <div class="col-sm-4">
+                           <button type="submit" class="btn btn-sm btn-dark" name="nameUpdate">UPDATE</button>
+                           <?php
+                           if (isset($_POST['nameUpdate'])) {
+                              $name = $_POST['name'];
+                              $uName = "UPDATE `users` SET `user_name`='$name' WHERE user_id = '$id'";
+                              if (mysqli_query($con, $uName)) {
+                                 // header('Location: manage-account.php');
+                                 echo "update successfully.";
+                                 $_SESSION['name'] = $data['user_name'];
+                              } else {
+                                 echo "Opps! update failed.";
+                              }
+                           }
+                           ?>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+               <!-- <div class="row mb-3">
+                  <label class="col-sm-3 col-form-label col_form_label">Photo:</label>
+                  <div class="col-sm-7">
+                     <div class="row">
+                        <div class="col-sm-8">
+                           <input type="file" class="form-control form_control" id="" name="photo">
+                           <div class="col-sm-4">
+
+                              <button type="submit" class="btn btn-sm btn-dark" name="nameUpdate">UPDATE</button>
+                              <?php
+                              if (isset($_POST['nameUpdate'])) {
+                                 $name = $_POST['name'];
+                                 $uName = "UPDATE `users` SET `user_name`='$name' WHERE user_id = '$id'";
+                                 if (mysqli_query($con, $uName)) {
+                                    // header('Location: manage-account.php');
+                                    echo "update successfully.";
+                                    $_SESSION['name'] = $data['user_name'];
+                                 } else {
+                                    echo "Opps! update failed.";
+                                 }
+                              }
+                              ?>
+                           </div>
+                        </div>
+                        <div class="col-sm-4">
+
+                        </div> 
+                     </div>
+
+                  </div>
+
                   <div class="col-sm-2">
                      <img class="img200" src="uploads/<?= $data['user_photo']; ?>" alt="">
                   </div>
-               </div>
+               </div> -->
 
             </div>
-            <div class="card-footer text-center">
+            <!-- <div class="card-footer text-center">
                <button type="submit" class="btn btn-sm btn-dark">UPDATE</button>
-            </div>
+            </div> -->
          </div>
       </form>
    </div>
